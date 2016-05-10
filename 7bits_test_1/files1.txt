@@ -1,0 +1,34 @@
+import java.io.*;
+public class Main{
+public static void main(String[] args) throws IOException{
+
+File f = new File("files1.txt");
+BufferedReader fin = new BufferedReader(new FileReader(f));
+
+String line;
+String text="";
+int tabLvl=0;
+System.out.println();
+while ((line = fin.readLine()) != null) {
+text = text+line;
+for (int i=0;i<line.length();i++) {
+if (line.charAt(i)=='}') {
+tabLvl-=1;
+newLine(tabLvl);
+}
+System.out.print (line.charAt(i));
+if ((line.charAt(i)==';') || (line.charAt(i)=='{')) {
+if (line.charAt(i)=='{')
+tabLvl+=1;
+newLine(tabLvl);
+}
+}
+}
+//System.out.print (text);
+}
+public static void newLine(int _tabLvl) {
+System.out.println ();
+for (int i=0;i<_tabLvl;i++)
+System.out.print("    ");
+}
+}
